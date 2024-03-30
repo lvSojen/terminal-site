@@ -5,24 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css" rel="stylesheet">
     <title>Document</title>
     <style>
         p {
             margin: 0;
             line-height: 1;
-          } 
-          body {
-            background-color: black;
+        }
+        body {
             margin: 0;
             padding: 0;
-          }
+            font-family: 'Hack';
+        }
+        a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        a img {
+            margin-right: 5px;
+        }
+        a:link { 
+            text-decoration: none; 
+        } 
+        :root{
+            --size: 1.4;
+            --font: 'Hack';
+        }
+        .terminal {
+            --color: #000000;
+            --background: #A1D6E2;
+            --link-color: #CB0000;
+            --animation: terminal-blink;
+            --line-thickness: 2;
+        }
+        .terminal .help-list {
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .terminal .help-list p {
+            color: green;
+        }
     </style>
 </head>
 <body>
-    <template id="banner">
-⣟⣯⣟⣯⡇⠀⣿⢩⣛⡼⣏⠀⠈⠋⠀⣈⡷⣙⢎⡳⣙⢮⣙⢮⣙⢎⡳⣙⢾⣿
+    <template id="banner">⣟⣯⣟⣯⡇⠀⣿⢩⣛⡼⣏⠀⠈⠋⠀⣈⡷⣙⢎⡳⣙⢮⣙⢮⣙⢎⡳⣙⢾⣿
 ⢿⡾⣽⡞⣷⣤⣏⡳⡜⡼⠗⠁⢀⠀⠙⢧⠳⣍⢞⡱⣭⠲⣍⠶⣩⢞⡱⡭⣾⣿
 ⠈⠻⠧⢿⣧⣿⠶⣵⢻⢞⡷⢲⡟⡶⢴⡭⢿⣜⣮⡱⢎⡳⣍⢞⡱⢮⡱⣳⣿⣽
 ⠀⣰⣶⡏⢷⣈⣿⣸⣇⣾⣸⣿⣾⣹⣆⡹⡎⡶⢇⡿⣹⢷⣾⣈⠷⣇⢷⣿⣿⣹
@@ -35,42 +66,107 @@
 ⠀⠁⢶⣶⠀⢷⠀⠀⠉⠉⠀⠈⠉⠶⠆⠈⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣾⣿
 ⠀⠡⢸⢹⠏⡍⠓⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣺⡟⠋⠉⢹⢭⢣
 ⠀⠀⢸⣹⡏⠭⠭⠭⠙⣲⣦⣤⣤⣀⣀⣀⣀⣤⣤⣶⣞⠉⠙⠛⠷⢀⣀⠘⣎⠧
-⢁⣈⣀⣀⢀⣀⣀⣀⣼⠟⠹⢿⣯⣟⣿⣻⡿⠿⠛⢿⣿⣦⡀⠀⠀⠀⠀⠉⠉⠘
-</template>
+⢁⣈⣀⣀⢀⣀⣀⣀⣼⠟⠹⢿⣯⣟⣿⣻⡿⠿⠛⢿⣿⣦⡀⠀⠀⠀⠀⠉⠉⠘</template>
     <script>
         $('body').terminal({
             hello: function(what) {
-                this.echo('Hello, ' + what +
-                          '. Wellcome to this terminal.');
+                this.echo('Hello, ' + what + '. Welcome to this terminal.');
             },
             hey: function() {
                 this.echo('Hey');
             },
             help: function() {
-                this.echo($(`<div>
-                    <p style="color: yellow;">whoami&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Who are you?</p>
-                    <p style="color: yellow;">help</p>
-                    <p style="color: yellow;">help</p>
-                    <p style="color: yellow;">help</p>
-                    <p style="color: yellow;">help</p>
-                    <p style="color: yellow;">help</p>
-                    
+                this.echo($(`<div class="help-list">
+                    <p>whoami&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Who is this person?</p>
+                    <p>socials&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social media</p>
+                    <p>projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projects hub</p>
+                    <p>contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact info</p>
+                    <p>quote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoirite quote</p><br />
+                    <p>more commands:</p>
+                    <p>time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display current time</p>
+                    <p>restart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Refresh page</p>
+                    <p>banner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display the header</p>
+                    <p>help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help command</p>
+                    <p>clear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear terminal</p>
                 </div>`));
             },
             cat: function() {
-                this.echo($('<img src="https://www.w3schools.com/tags/img_girl.jpg" alt="">'));
+                this.echo('<img src="https://www.w3schools.com/tags/img_girl.jpg" alt="">');
             },
             banner: function() {
                 this.echo($('#banner').html());
-              },
+            },
             time: function() {
-                this.echo(moment().format('MMMM Do YYYY, h:mm:ss a'))
+                this.echo(moment().format('MMMM Do YYYY, h:mm:ss a'));
+            },
+            contact: function() {
+                this.echo($(`
+            <div>
+                <a href="https://github.com/lvSojen" target="_blank" rel="noopener noreferrer">
+                    <img src="./github.svg" alt="github logo" height="15" width="15" />
+                    <span>github</span>
+                </a>
+                <a href="mailto:dell9459@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <img src="./email.svg" alt="email to" height="15" width="15" />
+                    <span>dell9459@gmail.com</span>
+                </a>
+            </div>
+              `));
+            },
+            whoami: function() {
+                this.echo($(`
+                <div>
+                    <p>Hello there!</p>
+                    <p>My name is Yao Wang, and I'm a software developer with one year of experience</p>
+                    <p>I previously worked at <a style="text-shadow: 1px 1px 2px pink;" href="https://www.odu.edu/engineering" target="_blank" rel="noopener noreferrer">Batten College of Engineering & Technology</a></p>
+                    <p>I'm passionate about technology and eager for new opportunities and challenges</p>
+                    <p>I'm also a gamer at heart, my favorite game from childhood would be Maplestory</p>
+                    <div>
+                        <a href="https://www.linkedin.com/in/yao-wang-odu/" target="_blank" rel="noopener noreferrer">
+                            <p>Let's connect&nbsp;</p>
+                            <img src="./linkedin.svg" alt="linkedin logo" height="15" width="15" />
+                            <span style="text-shadow: 1px 1px 2px pink;">linkedin</span>
+                        </a>
+                    </div>
+                </div>
+                `))
+            },
+            socials: function() {
+                this.echo($(`
+            <div>
+                <a href="https://www.linkedin.com/in/yao-wang-odu/" target="_blank" rel="noopener noreferrer">
+                    <img src="./linkedin.svg" alt="linkedin logo" height="15" width="15" />
+                    <span>linkedin</span>
+                </a>
+            </div>
+              `));
+            },
+            projects: function() {
+                this.echo($(`
+            <div>
+                <p>All my personal projects are inside my github repo</p>
+                <a href="https://github.com/lvSojen" target="_blank" rel="noopener noreferrer">
+                    <img src="./github.svg" alt="github logo" height="15" width="15" />
+                    <span>github</span>
+                </a>
+            </div>
+              `));
+            },
+            restart: function() {
+                location.reload()
+            },
+            quote: function() {
+                this.echo($(`
+                <p>where the light goes is where I go</p>
+                `));
             }
 
         }, {
-            greetings: banner.innerHTML + moment().format('MMMM Do YYYY, h:mm:ss a')+"\nWelcome to my Portfolio Web Terminal!"
+            greetings: $('#banner').html() 
+            + "\n" + moment().format('MMMM Do YYYY, h:mm:ss a') 
+            + "\nWelcome to My Interactive Web Terminal!\n\n" 
+            + "Type 'help' to get started" 
         });
-
-        </script>
+    </script>
 </body>
 </html>
