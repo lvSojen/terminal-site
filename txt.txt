@@ -1,0 +1,4 @@
+                <!-- this.echo($('#banner').html()) -->
+                <!-- this.echo(moment().format('MMMM Do YYYY, h:mm:ss a')) -->
+
+                    <p style="color: yellow;">whoami&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Who are you?</p>
